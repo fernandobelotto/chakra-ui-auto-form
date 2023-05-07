@@ -1,13 +1,12 @@
 import * as yup from 'yup';
 
-enum businessModelType {
+export enum businessModelType {
   BRIDGE = 'BRIDGE',
   GROWTH = 'GROWTH',
   ENTERPRISE = 'ENTERPRISE',
   GROWTH_PLUS = 'GROWTH_PLUS',
 }
- 
-enum businessTypes {
+export enum businessTypes {
   LLC = 'LLC',
   PLC = 'PLC',
   SOLETRADER = 'SOLETRADER',
@@ -18,7 +17,7 @@ enum businessTypes {
   TRUST = 'TRUST',
   BENE_OWNER = 'BENE_OWNER',
 } 
-enum countryCodes {
+export enum countryCodes {
   AT = 'AT',
   BE = 'BE',
   BG = 'BG',
@@ -271,12 +270,12 @@ enum countryCodes {
   ZM = 'ZM',
   ZW = 'ZW',
 }
-enum legalEntityTypes { 
+export enum legalEntityTypes { 
   IE = 'IE',
   GB = 'GB',
   NL = 'NL',
 }
-enum personTypes {
+export enum personTypes {
   DIRECTOR = 'DIRECTOR',
   PARTNER = 'PARTNER',
   CSECRETARY = 'CSECRETARY',
@@ -292,39 +291,39 @@ enum personTypes {
 } 
 
 const addressSchema = yup.object().shape({
-  line1: yup.string().required(),
+  line1: yup.string().required('Line 1 is required'),
   line2: yup.string(),
   line3: yup.string(),
   line4: yup.string(),
-  postTown: yup.string().required(),
-  postCode: yup.string().required(),
-  country: yup.string().required().oneOf(Object.values(countryCodes)),
+  postTown: yup.string().required('Post town is required'),
+  postCode: yup.string().required('Post code is required'),
+  country: yup.string().required('Country is required').oneOf(Object.values(countryCodes)),
 });
 
 const aliasSchema = yup.object().shape({
   title: yup.string(),
-  firstName: yup.string().required(),
+  firstName: yup.string().required('First name is required'),
   middleNames: yup.string(),
-  lastName: yup.string().required(),
+  lastName: yup.string().required('Last name is required'),
   dateChanged: yup.string(),
   reasonForChange: yup.string(),
 });
 
 const personDetailsSchema = yup.object().shape({
-  id: yup.string().required(),
-  title: yup.string().required(),
-  firstName: yup.string().required(),
+  id: yup.string().required('ID is required'),
+  title: yup.string().required('Title is required'),
+  firstName: yup.string().required('First name is required'),
   middleNames: yup.string(),
-  lastName: yup.string().required(),
-  dateOfBirth: yup.string().required(),
-  countryOfBirth: yup.string().required().oneOf(Object.values(countryCodes)),
+  lastName: yup.string().required('Last name is required'),
+  dateOfBirth: yup.string().required('Date of birth is required'),
+  countryOfBirth: yup.string().required('Country of birth is required').oneOf(Object.values(countryCodes)),
   email: yup.string().email(),
   phone: yup.string(),
-  type: yup.string().required().oneOf(Object.values(personTypes)),
-  ownership: yup.number().required(),
+  type: yup.string().required('Person type is required').oneOf(Object.values(personTypes)),
+  ownership: yup.number().required('Ownership percentage is required'),
   cardHolder: yup.boolean(),
-  accountPermission: yup.string().required(),
-  homeAddresses: yup.array().of(addressSchema).required(),
+  accountPermission: yup.string().required('Account permission is required'),
+  homeAddresses: yup.array().of(addressSchema).required('At least one home address is required'),
   alias: yup.array().of(aliasSchema),
 });
 
@@ -336,11 +335,11 @@ const accountDetailsSchema = yup.object().shape({
 });
 
 const businessDetailsSchema = yup.object().shape({
-  name: yup.string().required(),
+  name: yup.string().required('Business name is required'),
   tradingAs: yup.string(),
   businessDescription: yup.string(),
-  type: yup.string().required().oneOf(Object.values(businessTypes)),
-  country: yup.string().required().oneOf(Object.values(countryCodes)),
+  type: yup.string().required('Business type is required').oneOf(Object.values(businessTypes)),
+  country: yup.string().required('Country is required').oneOf(Object.values(countryCodes)),
   businessStart: yup.string(),
   webLink: yup.string(),
   companyRegNumber: yup.string(),
@@ -353,10 +352,9 @@ const businessDetailsSchema = yup.object().shape({
 });
 
 export const editObjectTypeSchema = yup.object().shape({
-  businessModel: yup.string().required('here is a message'),
+  businessModel: yup.string().oneOf(Object.values(businessModelType), 'Business model is required'),
   businessDetails: businessDetailsSchema.required(),
-  associates: yup.array().of(personDetailsSchema).required(),
-  accounts: yup.array().of(accountDetailsSchema).required(),
+  associates: yup.array().of(personDetailsSchema).required('At least one associate is required'),
+  accounts: yup.array().of(accountDetailsSchema).required('At least one account is required'),
 });
-
 
