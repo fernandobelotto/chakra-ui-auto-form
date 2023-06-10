@@ -1,80 +1,25 @@
 export const mock ={
-    "businessModel": "BRIDGE",
-    "businessDetails": {
-      "name": "",
-      "tradingAs": "",
-      "businessDescription": "",
-      "type": "",
-      "country": "",
-      "businessStart": "",
-      "webLink": "asdfasdfasdf",
-      "companyRegNumber": "",
-      "industryCode": "",
-      "VATNumber": "",
-      "legalEntity": "",
-      "taxIdentifier": "",
-      "registeredAddress": {
-        "line1": "",
-        "line2": "",
-        "line3": "",
-        "line4": "",
-        "postTown": "",
-        "postCode": "",
-        "country": ""
+    "FirstTab": {
+      "fieldA": "",
+      "fieldB": {
+        "fieldC": "",
       },
-      "tradingAddress": {
-        "line1": "",
-        "line2": "",
-        "line3": "",
-        "line4": "",
-        "postTown": "",
-        "postCode": "",
-        "country": ""
-      }
+      "fieldD": 0,
+      "fieldE": false,
     },
-    "associates": [
+    "SecondTab": [
       {
-        "id": "",
-        "title": "",
-        "firstName": "",
-        "middleNames": "",
-        "lastName": "",
-        "alias": [
+        "anotherFieldA": "",
+        "anotherFieldB": [
           {
-            "title": "",
-            "firstName": "",
-            "middleNames": "",
-            "lastName": "",
-            "dateChanged": "",
-            "reasonForChange": ""
+            "anotherFieldC": "",
           }
         ],
-        "dateOfBirth": "",
-        "countryOfBirth": "",
-        "email": "",
-        "phone": "",
-        "ownership": 0,
-        "cardHolder": false,
-        "accountPermission": "",
-        "homeAddresses": [
+        "anotherFieldD": [
           {
-            "line1": "",
-            "line2": "",
-            "line3": "",
-            "line4": "",
-            "postTown": "",
-            "postCode": "",
-            "country": "",
-            "addressFrom": ""
+            "anotherFieldE": "",
           }
         ]
-      }
-    ],
-    "accounts": [
-      {
-        "expectedMonthlySpend": 0,
-        "accountName": "",
-        "accountCurrency": ""
       }
     ],
   }
